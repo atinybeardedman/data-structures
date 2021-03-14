@@ -1,5 +1,6 @@
 import * as tape from 'tape';
 import {LinkedList} from '../src/linked-list';
+import { LinkedNode } from '../src/node';
 
 tape('linked list should be created', (test) => {
   const list = new LinkedList();
@@ -82,4 +83,20 @@ tape('remove tail should work', (test) => {
 
   test.end();
 
+});
+
+tape('iteration should work', (test) => {
+  const list = new LinkedList<number>();
+  const numbers = [1,2,3,4];
+  for(const number of numbers){
+    list.addToTail(number);
+  }
+  const result = [];
+  for(const node of list.nodes()){
+    result.push(node.data);
+  }
+
+  test.deepEqual(numbers, result);
+
+  test.end();
 });

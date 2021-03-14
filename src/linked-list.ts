@@ -1,4 +1,4 @@
-import {LinkedNode} from './node';
+import { LinkedNode } from "./node";
 
 /**
  * A implementation of a single linked list with pointers to the head and the tail
@@ -19,12 +19,21 @@ export class LinkedList<T> {
     return this._tail;
   }
 
+  public *nodes() {
+   let node = this._head;
+   while(node){
+     yield node;
+     node = node.next;
+   }
+  }
+
+
   addToHead(data: T): void {
     if (this._head) {
       const oldHead = this._head;
       this._head = new LinkedNode<T>(data);
       this._head.next = oldHead;
-      if (!oldHead.next) {
+      if (!oldHead.hasNext()) {
         this._tail = oldHead;
       }
     } else {
@@ -40,6 +49,7 @@ export class LinkedList<T> {
       const oldHead = this._head;
       this._head = oldHead.next;
 
+
       if (!this._head) {
         this._tail = null;
       }
@@ -53,10 +63,6 @@ export class LinkedList<T> {
       const oldTail = this._tail;
       this._tail = new LinkedNode<T>(data);
       oldTail.next = this._tail;
-
-      if (!this._head) {
-        this._head = oldTail;
-      }
     } else {
       this._tail = new LinkedNode<T>(data);
       this._head = this._tail;
