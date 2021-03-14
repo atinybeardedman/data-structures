@@ -27,10 +27,14 @@ export class LinkedList<T> {
     }
   }
 
+  isEmpty() {
+    return this._head === null;
+  }
+
 
   addToHead(data: T): void {
-    if (this._head) {
-      const oldHead = this._head;
+    if (!this.isEmpty()) {
+      const oldHead = this._head as LinkedNode<T>;
       this._head = new LinkedNode<T>(data);
       this._head.next = oldHead;
       if (!oldHead.hasNext()) {
@@ -43,10 +47,10 @@ export class LinkedList<T> {
   }
 
   removeHead(): T | null {
-    if (!this._head) {
+    if (this.isEmpty()) {
       return null;
     } else {
-      const oldHead = this._head;
+      const oldHead = this._head as LinkedNode<T>;
       this._head = oldHead.next;
 
 
@@ -59,8 +63,8 @@ export class LinkedList<T> {
   }
 
   addToTail(data: T): void {
-    if (this._tail) {
-      const oldTail = this._tail;
+    if (!this.isEmpty()) {
+      const oldTail = this._tail as LinkedNode<T>;
       this._tail = new LinkedNode<T>(data);
       oldTail.next = this._tail;
     } else {
@@ -70,7 +74,7 @@ export class LinkedList<T> {
   }
 
   removeTail(): T | null {
-    if (!this._tail) {
+    if (this.isEmpty()) {
       return null;
     } else {
       if (this._head === this._tail) {
@@ -81,7 +85,7 @@ export class LinkedList<T> {
       while (currentNode!.next !== this._tail) {
         currentNode = currentNode!.next;
       }
-      const oldTail = currentNode!.next;
+      const oldTail = currentNode!.next as LinkedNode<T>;
       this._tail = currentNode;
       this._tail!.next = null;
       return oldTail.data;
@@ -95,8 +99,8 @@ export class DoublyLinkedList<T> extends LinkedList<T> {
   }
 
   addToHead(data: T): void {
-    if (this._head) {
-      const oldHead = this._head;
+    if (!this.isEmpty()) {
+      const oldHead = this._head as LinkedNode<T>;
       this._head = new LinkedNode<T>(data);
       this._head.next = oldHead;
       oldHead.previous = this._head;
@@ -111,10 +115,10 @@ export class DoublyLinkedList<T> extends LinkedList<T> {
   }
 
   removeHead(): T | null {
-    if (!this._head) {
+    if (this.isEmpty()) {
       return null;
     } else {
-      const oldHead = this._head;
+      const oldHead = this._head as LinkedNode<T>;
       this._head = oldHead.next;
 
       if (this._head) {
@@ -128,8 +132,8 @@ export class DoublyLinkedList<T> extends LinkedList<T> {
   }
 
   addToTail(data: T): void {
-    if (this._tail) {
-      const oldTail = this._tail;
+    if (!this.isEmpty()) {
+      const oldTail = this._tail as LinkedNode<T>;
       this._tail = new LinkedNode<T>(data);
       this._tail.previous = oldTail;
       oldTail.next = this._tail;
@@ -144,14 +148,14 @@ export class DoublyLinkedList<T> extends LinkedList<T> {
   }
 
   removeTail(): T | null {
-    if (!this._tail) {
+    if (this.isEmpty()) {
       return null;
     }
     if (this._head === this._tail) {
       return this.removeHead();
     }
 
-    const oldTail = this._tail;
+    const oldTail = this._tail as LinkedNode<T>;
     this._tail = oldTail.previous;
     this._tail!.next = null;
     return oldTail.data;

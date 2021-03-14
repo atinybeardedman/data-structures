@@ -93,3 +93,15 @@ tape('iteration should work', (test) => {
 
   test.end();
 });
+
+tape('isEmpty should work', (test) => {
+  const list = new DoublyLinkedList<number>();
+
+  test.true(list.isEmpty());
+  list.addToHead(1);
+  test.false(list.isEmpty());
+  list.removeHead();
+  test.true(list.isEmpty());
+
+  test.end();
+});
