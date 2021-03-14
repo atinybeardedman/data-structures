@@ -1,0 +1,24 @@
+{
+  "name": "data-structures",
+  "version": "0.0.1",
+  "description": "Classes for common data structures in typscript",
+  "main:ts": "index.ts",
+  "scripts": {
+    "test": "ts-node node_modules/tape/bin/tape test/**/*.ts",
+    "lint": "eslint . --ext .ts"
+  },
+  "author": "Sean Dickinson",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/tape": "^4.13.0",
+    "@typescript-eslint/eslint-plugin": "4.15.2",
+    "@typescript-eslint/parser": "4.15.2",
+    "eslint": "^7.22.0",
+    "eslint-config-google": "0.14.0",
+    "eslint-plugin-import": "2.22.1",
+    "tape": "^5.2.2",
+    "ts-node": "9.1.1",
+    "tslib": "2.1.0",
+    "typescript": "^4.2.3"
+  }
+}
