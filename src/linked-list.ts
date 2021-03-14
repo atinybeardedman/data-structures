@@ -1,4 +1,4 @@
-import { LinkedNode } from "./node";
+import {LinkedNode} from './node';
 
 /**
  * A implementation of a single linked list with pointers to the head and the tail
@@ -19,12 +19,12 @@ export class LinkedList<T> {
     return this._tail;
   }
 
-  public *nodes() {
-   let node = this._head;
-   while(node){
-     yield node;
-     node = node.next;
-   }
+  public* nodes() {
+    let node = this._head;
+    while (node) {
+      yield node;
+      node = node.next;
+    }
   }
 
 

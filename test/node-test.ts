@@ -52,4 +52,4 @@ tape('linked node methods work', (test) => {
   test.equal(node2.hasPrevious(), true);
 
   test.end();
-})
+});

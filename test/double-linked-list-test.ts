@@ -80,12 +80,12 @@ tape('remove tail should work', (test) => {
 
 tape('iteration should work', (test) => {
   const list = new DoublyLinkedList<number>();
-  const numbers = [1,2,3,4];
-  for(const number of numbers){
+  const numbers = [1, 2, 3, 4];
+  for (const number of numbers) {
     list.addToTail(number);
   }
   const result = [];
-  for(const node of list.nodes()){
+  for (const node of list.nodes()) {
     result.push(node.data);
   }
 
