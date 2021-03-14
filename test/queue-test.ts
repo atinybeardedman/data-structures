@@ -1,5 +1,5 @@
 import * as tape from 'tape';
-import {Queue} from '../src/queue';
+import {Queue, BoundedQueue} from '../src/queue';
 
 tape('queue should be created', (test) => {
   const queue = new Queue<number>();
@@ -30,5 +30,39 @@ tape('queue methods should work', (test) => {
 
   test.end();
 
+});
+
+
+tape('boundedqueue should be created', (test) => {
+  const queue = new BoundedQueue<number>(3);
+
+  test.true(queue);
+
+  test.end();
+});
+
+tape('boundedqueue should function correctly', (test) => {
+  const queue = new BoundedQueue<number>(3);
+  queue.enqueue(1);
+  queue.enqueue(2);
+  queue.enqueue(3);
+
+  test.throws(() => {
+    queue.enqueue(4);
+  }, /Queue Overflow/);
+
+  test.equal(queue.peek(), 1);
+
+  test.equal(queue.dequeue(), 1);
+  test.equal(queue.dequeue(), 2);
+  test.equal(queue.dequeue(), 3);
+
+
+  test.throws(() => {
+    queue.dequeue();
+  }, /Queue Underflow/);
+
+
+  test.end();
 
 });

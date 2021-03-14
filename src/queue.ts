@@ -11,7 +11,7 @@ export class Queue<T> {
     }
 
     public dequeue(): T {
-      if (this.queue.head) {
+      if (!this.queue.isEmpty()) {
         return this.queue.removeHead() as T;
       } else {
         throw new Error('Queue Underflow');
@@ -19,6 +19,35 @@ export class Queue<T> {
     }
 
     public peek(): T | null {
-      return this.queue.head ? this.queue.head.data : null;
+      return !this.queue.isEmpty() ? this.queue!.head!.data : null;
+    }
+}
+
+export class BoundedQueue<T> extends Queue<T> {
+    private size: number;
+    private maxSize: number;
+    constructor(maxSize: number) {
+      super();
+      this.size = 0;
+      this.maxSize = maxSize;
+    }
+
+    private isFull(): boolean {
+      return this.size === this.maxSize;
+    }
+
+    public enqueue(data: T): void {
+      if (!this.isFull()) {
+        super.enqueue(data);
+        this.size++;
+      } else {
+        throw new Error('Queue Overflow');
+      }
+    }
+
+    public dequeue(): T {
+      const result = super.dequeue();
+      this.size--;
+      return result;
     }
 }
