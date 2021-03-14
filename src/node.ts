@@ -17,7 +17,7 @@ export class Node<T> {
 }
 
 /**
- * An implementation of a node that contains a data property 
+ * An implementation of a node that contains a data property
  */
 export class LinkedNode<T> extends Node<T> {
     private _next: LinkedNode<T> | null;
