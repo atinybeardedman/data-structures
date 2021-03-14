@@ -5,7 +5,8 @@
   "main:ts": "index.ts",
   "scripts": {
     "test": "ts-node node_modules/tape/bin/tape test/**/*.ts",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint --fix . --ext .ts"
   },
   "author": "Sean Dickinson",
   "license": "MIT",
