@@ -44,4 +44,12 @@ export class LinkedNode<T> extends Node<T> {
       this._previous = node;
     }
 
+    hasNext(): boolean {
+      return this._next !== null;
+    }
+
+    hasPrevious(): boolean {
+      return this._previous !== null;
+    }
+
 }

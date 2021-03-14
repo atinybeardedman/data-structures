@@ -37,3 +37,19 @@ tape('linked node can be linked', (test) => {
 
   test.end();
 });
+
+tape('linked node methods work', (test) => {
+  const node1 = new LinkedNode(1);
+  const node2 = new LinkedNode(2);
+
+  test.equal(node1.hasNext(), false);
+  test.equal(node1.hasPrevious(), false);
+
+  node1.next = node2;
+  node2.previous = node1;
+
+  test.equal(node1.hasNext(), true);
+  test.equal(node2.hasPrevious(), true);
+
+  test.end();
+})
