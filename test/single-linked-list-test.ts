@@ -91,7 +91,7 @@ tape('iteration should work', (test) => {
     list.addToTail(number);
   }
   const result = [];
-  for (const node of list.nodes()) {
+  for (const node of list.nodes) {
     result.push(node.data);
   }
 
