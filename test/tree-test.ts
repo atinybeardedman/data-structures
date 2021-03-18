@@ -1,5 +1,5 @@
 import * as tape from 'tape';
-import {TreeNode} from '../src/tree';
+import {BinaryTreeNode, TreeNode} from '../src/tree';
 
 tape('treenode should be created', (test) => {
   const node = new TreeNode<number>(1);
@@ -68,3 +68,39 @@ tape('toString() method should work', (test) => {
 
   test.end();
 });
+
+tape('Binary tree should be created', (test) => {
+    const tree = new BinaryTreeNode(5);
+    
+    test.true(tree);
+    test.equal(tree.data, 5);
+    test.end();
+});
+
+tape('Binary tree should allow left and right assignment', (test) => {
+    const tree = new BinaryTreeNode(5);
+    tree.left = new BinaryTreeNode(3);
+    tree.right = new BinaryTreeNode(6);
+
+    test.equal(tree.left.data, 3);
+    test.equal(tree.right.data, 6);
+
+    test.end();
+});
+
+tape('Binary tree addChild should work', (test) => {
+  const tree = new BinaryTreeNode(5);
+  const leftNode = new BinaryTreeNode(3);
+  const rightData = 8;
+
+  tree.addChild(leftNode);
+  test.equal(tree.left, leftNode);
+  
+  tree.addChild(rightData);
+  test.equal(tree.right!.data, rightData);
+
+  tree.addChild(4);
+  test.equal(tree.left!.right!.data, 4);
+  
+  test.end();
+})

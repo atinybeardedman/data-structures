@@ -1,7 +1,9 @@
 import {Node} from './node';
 
+
+
 export class TreeNode<T> extends Node<T> {
-    private _children: TreeNode<T>[];
+    protected _children: TreeNode<T>[];
     constructor(data: T) {
       super(data);
       this._children = [];
@@ -41,4 +43,48 @@ export class TreeNode<T> extends Node<T> {
       }
       return result;
     }
+}
+
+export class BinaryTreeNode<T> extends Node<T>{
+    private _left: BinaryTreeNode<T> | null; 
+    private _right: BinaryTreeNode<T> | null; 
+    constructor(data: T){
+        super(data);
+        this._left = null;
+        this._right = null;
+    }
+
+    set left(node: BinaryTreeNode<T> | null){
+       this._left = node;
+    }
+
+    set right(node: BinaryTreeNode<T> | null){
+       this._right = node;
+    }
+
+    get left(): BinaryTreeNode<T> | null {
+        return this._left;
+    }
+
+    get right(): BinaryTreeNode<T> | null {
+        return this._right;
+    }
+
+    addChild(data: T | BinaryTreeNode<T>): void {
+      const node = data instanceof BinaryTreeNode ? data : new BinaryTreeNode<T>(data);
+      if(node.data < this.data){
+        if(!this.left){
+          this.left = node;
+        } else {
+          this.left.addChild(node);
+        }
+      } else {
+        if(!this.right){
+          this.right = node;
+        } else {
+          this.right.addChild(node);
+        }
+      }
+    }
+    
 }
