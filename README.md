@@ -9,5 +9,6 @@ This repo aims to implement various common data structures in typescript with al
 - Doubly Linked List
 - Queue (Bounded and Unbounded)
 - Stack (Fixed and Unfixed)
+- Tree (Regular and Binary)
 
 ...More to come
