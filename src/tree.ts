@@ -1,7 +1,6 @@
 import {Node} from './node';
 
 
-
 export class TreeNode<T> extends Node<T> {
     protected _children: TreeNode<T>[];
     constructor(data: T) {
@@ -45,46 +44,46 @@ export class TreeNode<T> extends Node<T> {
     }
 }
 
-export class BinaryTreeNode<T> extends Node<T>{
-    private _left: BinaryTreeNode<T> | null; 
-    private _right: BinaryTreeNode<T> | null; 
-    constructor(data: T){
-        super(data);
-        this._left = null;
-        this._right = null;
+export class BinaryTreeNode<T> extends Node<T> {
+    private _left: BinaryTreeNode<T> | null;
+    private _right: BinaryTreeNode<T> | null;
+    constructor(data: T) {
+      super(data);
+      this._left = null;
+      this._right = null;
     }
 
-    set left(node: BinaryTreeNode<T> | null){
-       this._left = node;
-    }
-
-    set right(node: BinaryTreeNode<T> | null){
-       this._right = node;
+    set left(node: BinaryTreeNode<T> | null) {
+      this._left = node;
     }
 
     get left(): BinaryTreeNode<T> | null {
-        return this._left;
+      return this._left;
+    }
+
+    set right(node: BinaryTreeNode<T> | null) {
+      this._right = node;
     }
 
     get right(): BinaryTreeNode<T> | null {
-        return this._right;
+      return this._right;
     }
 
     addChild(data: T | BinaryTreeNode<T>): void {
       const node = data instanceof BinaryTreeNode ? data : new BinaryTreeNode<T>(data);
-      if(node.data < this.data){
-        if(!this.left){
+      if (node.data < this.data) {
+        if (!this.left) {
           this.left = node;
         } else {
           this.left.addChild(node);
         }
       } else {
-        if(!this.right){
+        if (!this.right) {
           this.right = node;
         } else {
           this.right.addChild(node);
         }
       }
     }
-    
+
 }

@@ -11,7 +11,7 @@ export class LinkedList<T> {
     this._tail = null;
   }
 
-  private *_nodes(){
+  private* _nodes() {
     let node = this._head;
     while (node) {
       yield node;
@@ -28,7 +28,7 @@ export class LinkedList<T> {
   }
 
   get nodes(): Generator<LinkedNode<T>> {
-   return this._nodes();
+    return this._nodes();
   }
 
   isEmpty() {
